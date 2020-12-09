@@ -11,4 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findByCategoryId(@RequestParam("id") Long id, Pageable pageable);
+
+    /**
+     *
+     * @param name
+     * Runs this query behind the scenes:
+     * SELECT * FROM Product p
+     * WHERE p.name LIKE CONCAT('%',:name,'%');
+     */
+    Page<Product> findByNameContaining(@RequestParam("name") String name, Pageable pageable);
 }
