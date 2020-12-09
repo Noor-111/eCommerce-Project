@@ -1,5 +1,6 @@
 <div class="main-content">
     <div class="section-content section-content-p30">
+           
         <div class="container-fluid">
             <div class="row">
 
@@ -13,6 +14,10 @@
 
                     </div>
 
+                </div>
+                <!-- If no products found display message-->
+                <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No matches for your search criteria..
                 </div>
 
             </div>
