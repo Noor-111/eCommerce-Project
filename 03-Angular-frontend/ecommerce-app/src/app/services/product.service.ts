@@ -29,6 +29,17 @@ export class ProductService {
 
   }
 
+  getProductListPaginate(thePage: number, 
+                         thePageSize: number, 
+                         theCategoryId: number): Observable<GetResponseProduct> {
+
+    // need to build URL based on category id, page and size 
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
+                      + `&page=${thePage}&size=${thePageSize}`;
+
+    return this.httpClient.get<GetResponseProduct>(searchUrl);
+}
+
   getProduct(theProductId: number): Observable<Product> {
     
     const getProductUrl =`${this.baseUrl}/${theProductId}`;

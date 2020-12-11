@@ -30,6 +30,33 @@
 
             </div>
 
+            
+            <!-- begin footer -->
+            <div class="footer-pagination">
+                <div class="row">
+                    
+
+                    
+                        
+                            <div class="col-md-12" >
+                            
+                                <ngb-pagination class="d-flex justify-content-center"
+                                                [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                                                [(page)]="thePageNumber"
+                                                [pageSize]="thePageSize"
+                                                [collectionSize]="theTotalElements"
+                                                (pageChange)="listProducts()">
+
+                                </ngb-pagination>
+
+                            </div>
+                        
+                    
+
+                </div>
+            </div>
+            <!-- end footer -->
+
         </div>
 
     </div>
