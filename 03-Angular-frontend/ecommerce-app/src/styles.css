@@ -561,7 +561,9 @@ input.au-input.au-input-xl{
     font-weight:500;
     color:#585858
 }
-
+.product-box a{
+    max-width: 90%;
+}
 /* 
  * ----------------------------
  * Shopping Cart Checkout
