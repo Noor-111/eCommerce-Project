@@ -788,6 +788,21 @@ footer ul li{
 }
 
 /* 
+* -----------------------------
+* ngb-pagination CUSTOM STYLING
+* ------------------------------
+*/
+ngb-pagination .page-item.active .page-link {
+    background-color:#0da8e4!important;
+    
+  }
+  ngb-pagination .page-item:not(.active) .page-link {
+    color:#0da8e4!important;
+    
+  }
+
+
+/* 
  * ----------------------------
  * Media Queries
  * ----------------------------
