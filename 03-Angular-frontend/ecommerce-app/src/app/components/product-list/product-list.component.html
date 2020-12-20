@@ -15,7 +15,7 @@
                             <img src="{{product.imageUrl}}" class="image-responsive">
                         </a>
                         <a routerLink="/products/{{product.id}}">
-                             <h1>{{product.name}}</h1>
+                             <h1 data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{product.name}}">{{product.name}}</h1>
                         </a>
                         <div class="price">{{product.unitPrice | currency:'USD'}}</div>
                         <button (click)="addToCart(product)" class="btn btn-primary btn-sm">Add to cart</button>
