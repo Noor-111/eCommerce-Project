@@ -7,7 +7,7 @@ import { CartItem } from '../common/cart-item';
 })
 export class CartService {
 
-  cartItems: CartItem[] =[];
+  cartItems: CartItem[] = [];
 
   /**
    * Subject is a subclass of Observable. We can use Subject to
@@ -31,6 +31,7 @@ export class CartService {
       existingCartItem = this.cartItems.find(tempcartItem => tempcartItem.id == theCartItem.id);
 
 
+
       // check if we found it
       alreadyExistsInCart = (existingCartItem != undefined);
     }
@@ -48,6 +49,37 @@ export class CartService {
     this.computeCartTotals();
   }
 
+  decrementQuantity(theCartItem: CartItem) {
+
+    theCartItem.quantity--;
+
+    if (theCartItem.quantity === 0) {
+      this.removeFromCart(theCartItem);
+    }
+    else {
+      this.computeCartTotals();
+    }
+  }
+
+  removeFromCart(cartItem: CartItem) {
+    // get confirmation from user 
+    let isConfirm = confirm("Are you sure you want to remove the product from the cart?");
+
+    if(isConfirm){
+      //get index of the item to remove
+    const theCartItemIndex = this.cartItems.findIndex(tempcartItem => tempcartItem.id == cartItem.id);
+    //if Item found remove it
+    if (theCartItemIndex > -1) {
+      this.cartItems.splice(theCartItemIndex, 1);
+    }
+
+
+    this.computeCartTotals();
+
+    }
+    
+  }
+
   computeCartTotals() {
 
     let totalPriceValue: number = 0;
@@ -63,7 +95,7 @@ export class CartService {
     this.totalQuantity.next(totalQuantityValue);
 
     //logging for debugging purposes
-    this.logCartData(totalPriceValue,totalQuantityValue);
+    this.logCartData(totalPriceValue, totalQuantityValue);
   }
 
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
