@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -13,7 +14,8 @@ export class CheckoutComponent implements OnInit {
   totalPrice: number = 0;
   totalQuantity: number = 0;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
 
@@ -53,6 +55,20 @@ export class CheckoutComponent implements OnInit {
       }),
 
     });
+
+    this.reviewCartDetails();
+  }
+
+  reviewCartDetails() {
+
+    this.cartService.totalPrice.subscribe(
+      data => this.totalPrice = data
+    );
+
+    this.cartService.totalQuantity.subscribe(
+      data => this.totalQuantity = data
+    );
+
   }
 
   copyShippingAddressToBillingAddress(event) {
