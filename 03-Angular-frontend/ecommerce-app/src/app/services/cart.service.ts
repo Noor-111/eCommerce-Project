@@ -51,12 +51,13 @@ export class CartService {
 
   decrementQuantity(theCartItem: CartItem) {
 
-    theCartItem.quantity--;
+    
 
-    if (theCartItem.quantity === 0) {
+    if (theCartItem.quantity === 1) {
       this.removeFromCart(theCartItem);
     }
     else {
+      theCartItem.quantity--;
       this.computeCartTotals();
     }
   }
