@@ -4,6 +4,7 @@ import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { CartService } from 'src/app/services/cart.service';
 import { FormService } from 'src/app/services/form.service';
+import { ValidationUtil } from 'src/app/validators/validation-util';
 
 @Component({
   selector: 'app-checkout',
@@ -32,8 +33,16 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('',[Validators.required, Validators.minLength(2)]),
-        lastName: new FormControl('',[Validators.required, Validators.minLength(2)]),
+        firstName: new FormControl('',
+                                    [Validators.required,
+                                     Validators.minLength(2),
+                                     ValidationUtil.notWhitespaceOnly]),
+
+        lastName: new FormControl('',
+                                    [Validators.required,
+                                     Validators.minLength(2),
+                                     ValidationUtil.notWhitespaceOnly]),
+
         email: new FormControl('',[Validators.required,
                                    Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')])
 
